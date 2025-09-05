@@ -1,0 +1,11 @@
+/* Simple, small stylesheet for the tool to avoid collisions */
+.exif-app{background:#08101a;padding:14px;border-radius:10px;color:#e6eef6}
+.u-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.u-file{display:block;border:2px dashed rgba(255,255,255,0.04);padding:12px;border-radius:8px;cursor:pointer;flex:1}
+.u-file input{display:none}
+.u-drop{min-height:56px;display:flex;align-items:center;justify-content:center;color:#9ca3af}
+.u-actions{display:flex;gap:8px}
+.u-actions button{background:#06b6d4;border:none;color:#021118;padding:8px 10px;border-radius:8px;cursor:pointer}
+#fileList{margin-top:8px}
+.file-item{display:flex;justify-content:space-between;background:#07121a;padding:8px;border-radius:8px;margin-bottom:8px}
+.file-item small{color:#9ca3af}

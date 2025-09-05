@@ -1,0 +1,17 @@
+<!-- Minimal, self-contained tool UI. Keep semantics and IDs intact for tool.js to hook into -->
+<div class="exif-app" aria-live="polite">
+<div class="u-row">
+<label class="u-file" for="fileInput">
+<input id="fileInput" type="file" accept="image/*" multiple>
+<div class="u-drop">Click or drop images here</div>
+</label>
+<div class="u-actions">
+<button id="stripBtn" type="button">Strip EXIF</button>
+<button id="resizeBtn" type="button">Resize for Social</button>
+<button id="downloadAllBtn" type="button">Download Cleaned ZIP</button>
+</div>
+</div>
+
+
+<div id="fileList" aria-live="polite" style="margin-top:12px"></div>
+</div>

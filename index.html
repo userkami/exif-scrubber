@@ -1,0 +1,78 @@
+<!doctype html>
+<meta property="og:type" content="website">
+
+
+<!-- JSON-LD: WebApplication -->
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "WebApplication",
+"name": "EXIF Scrubber & Safe-Share Image Resizer",
+"url": "https://userkami.github.io/exif-scrubber/",
+"applicationCategory": "UtilityApplication",
+"description": "Remove EXIF/GPS metadata in your browser (no upload) and resize for social platforms.",
+"offers": {"@type":"Offer","price":"0","priceCurrency":"USD"}
+}
+</script>
+
+
+<style>
+/* Minimal critical styles to avoid flash of unstyled content */
+:root{--bg:#0f1724;--card:#0b1220;--accent:#06b6d4;--muted:#9ca3af;color-scheme:dark}
+html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;color:#e6eef6;background:linear-gradient(180deg,#071427 0%,#051020 100%)}
+.wrap{max-width:980px;margin:28px auto;padding:20px}
+header{display:flex;gap:16px;align-items:center}
+header h1{margin:0;font-size:20px}
+header p{margin:0;color:var(--muted)}
+footer{margin-top:28px;color:var(--muted);font-size:14px}
+nav a{color:var(--accent);text-decoration:none}
+.hero{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:18px;border-radius:12px}
+.cta{display:inline-block;margin-top:12px;background:var(--accent);color:#021118;padding:8px 12px;border-radius:8px;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<div>
+<h1>EXIF Scrubber & Safe-Share Image Resizer</h1>
+<p>Privacy-first. Remove EXIF/GPS metadata and resize images entirely in your browser — no upload.</p>
+</div>
+</header>
+
+
+<main>
+<section class="hero" aria-labelledby="tool-heading">
+<h2 id="tool-heading">Try the tool — private, fast, free</h2>
+<p style="color:var(--muted)">Drop an image or click to select. Supports JPG, PNG, WEBP, HEIC. Batch processing + ZIP download available.</p>
+
+
+<!-- The tool will be injected here -->
+<div id="exif-tool" style="margin-top:16px"></div>
+
+
+</section>
+
+
+<section style="margin-top:18px">
+<h3>Quick links</h3>
+<nav>
+<a href="/landing/remove-exif-from-heic/">Remove EXIF from HEIC</a> •
+<a href="/landing/webp-metadata-remover/">WebP EXIF remover</a> •
+<a href="/landing/remove-png-metadata/">PNG metadata remover</a> •
+<a href="/landing/bulk-exif-remover/">Batch EXIF remover</a>
+</nav>
+</section>
+
+
+</main>
+
+
+<footer>
+<p>Built with privacy in mind. Nothing is uploaded — processing happens on your device.</p>
+</footer>
+</div>
+
+
+<script src="/tool/embed.js"></script>
+</body>
+</html>
