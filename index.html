@@ -1,82 +1,69 @@
-<!doctype html>
-<meta property="og:type" content="website">
-
-
-<!-- JSON-LD: WebApplication -->
-<script type="application/ld+json">
-{
-"@context": "https://schema.org",
-"@type": "WebApplication",
-"name": "EXIF Scrubber & Safe-Share Image Resizer",
-"url": "https://userkami.github.io/exif-scrubber/",
-"applicationCategory": "UtilityApplication",
-"description": "Remove EXIF/GPS metadata in your browser (no upload) and resize for social platforms.",
-"offers": {"@type":"Offer","price":"0","priceCurrency":"USD"}
-}
-</script>
-
-
-<style>
-/* Minimal critical styles to avoid flash of unstyled content */
-:root{--bg:#0f1724;--card:#0b1220;--accent:#06b6d4;--muted:#9ca3af;color-scheme:dark}
-html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;color:#e6eef6;background:linear-gradient(180deg,#071427 0%,#051020 100%)}
-.wrap{max-width:980px;margin:28px auto;padding:20px}
-header{display:flex;gap:16px;align-items:center}
-header h1{margin:0;font-size:20px}
-header p{margin:0;color:var(--muted)}
-footer{margin-top:28px;color:var(--muted);font-size:14px}
-nav a{color:var(--accent);text-decoration:none}
-.hero{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:18px;border-radius:12px}
-.cta{display:inline-block;margin-top:12px;background:var(--accent);color:#021118;padding:8px 12px;border-radius:8px;text-decoration:none}
-</style>
-
-	<script src="https://cdn.tailwindcss.com"></script>
-
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>EXIF Scrubber — Remove EXIF & GPS Metadata Online (No Upload)</title>
+  <meta name="description" content="Free online EXIF remover. Strip GPS and camera data from photos directly in your browser. No upload required. Safe, fast, and supports JPG, PNG, HEIC, and WEBP." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- TailwindCSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-<div class="wrap">
-<header>
-<div>
-<h1>EXIF Scrubber & Safe-Share Image Resizer</h1>
-<p>Privacy-first. Remove EXIF/GPS metadata and resize images entirely in your browser — no upload.</p>
-</div>
-</header>
+<body class="bg-gray-100 text-gray-800 font-sans">
 
+  <!-- Header / Hero -->
+  <header class="bg-white shadow">
+    <div class="max-w-4xl mx-auto px-6 py-8 text-center">
+      <h1 class="text-3xl font-extrabold text-gray-900 mb-3">
+        EXIF Scrubber — Safe & Private Metadata Remover
+      </h1>
+      <p class="text-lg text-gray-600">
+        Remove GPS location, camera info, and metadata <strong>without uploading</strong>.  
+        Everything happens directly in your browser — fast, private, and secure.
+      </p>
+    </div>
+  </header>
 
-<main>
-<section class="hero" aria-labelledby="tool-heading">
-<h2 id="tool-heading">Try the tool — private, fast, free</h2>
-<p style="color:var(--muted)">Drop an image or click to select. Supports JPG, PNG, WEBP, HEIC. Batch processing + ZIP download available.</p>
+  <!-- Tool Embed -->
+  <main class="max-w-4xl mx-auto px-6 py-10">
+    <div id="exif-tool"></div>
+    <script src="tool/embed.js"></script>
+  </main>
 
+  <!-- Features Section -->
+  <section class="bg-white py-12">
+    <div class="max-w-4xl mx-auto px-6 grid md:grid-cols-2 gap-8">
+      <div class="p-6 bg-gray-50 rounded-xl shadow hover:shadow-md transition">
+        <h3 class="font-bold text-lg mb-2">🔒 100% Private</h3>
+        <p>Images never leave your device. All EXIF removal happens locally in your browser.</p>
+      </div>
+      <div class="p-6 bg-gray-50 rounded-xl shadow hover:shadow-md transition">
+        <h3 class="font-bold text-lg mb-2">⚡ Fast & Secure</h3>
+        <p>No uploads. Clean images instantly, even offline, without worrying about privacy leaks.</p>
+      </div>
+      <div class="p-6 bg-gray-50 rounded-xl shadow hover:shadow-md transition">
+        <h3 class="font-bold text-lg mb-2">🖼️ Multi-format Support</h3>
+        <p>Works with JPG, PNG, HEIC, and WEBP. Bulk clean multiple photos at once.</p>
+      </div>
+      <div class="p-6 bg-gray-50 rounded-xl shadow hover:shadow-md transition">
+        <h3 class="font-bold text-lg mb-2">📂 Bulk ZIP Export</h3>
+        <p>Download all your cleaned files together in a convenient ZIP package.</p>
+      </div>
+    </div>
+  </section>
 
-<!-- The tool will be injected here -->
-<div id="exif-tool" style="margin-top:16px"></div>
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-gray-300 mt-12">
+    <div class="max-w-4xl mx-auto px-6 py-8">
+      <p class="mb-4">Quick Links:</p>
+      <nav class="space-x-4">
+        <a href="landing/remove-exif-from-heic.html" class="hover:text-white">Remove EXIF from HEIC</a>
+        <a href="landing/webp-metadata-remover.html" class="hover:text-white">Remove EXIF from WEBP</a>
+        <a href="landing/remove-png-metadata.html" class="hover:text-white">Remove EXIF from PNG</a>
+      </nav>
+      <p class="mt-6 text-sm text-gray-500">&copy; 2025 EXIF Scrubber. All rights reserved.</p>
+    </div>
+  </footer>
 
-
-</section>
-
-
-<section style="margin-top:18px">
-<h3>Quick links</h3>
-<nav>
-<a href="/landing/remove-exif-from-heic/">Remove EXIF from HEIC</a> •
-<a href="/landing/webp-metadata-remover/">WebP EXIF remover</a> •
-<a href="/landing/remove-png-metadata/">PNG metadata remover</a> •
-<a href="/landing/bulk-exif-remover/">Batch EXIF remover</a>
-</nav>
-</section>
-
-
-</main>
-
-
-<footer>
-<p>Built with privacy in mind. Nothing is uploaded — processing happens on your device.</p>
-</footer>
-</div>
-
-
-<script src="tool/embed.js"></script>
 </body>
 </html>
