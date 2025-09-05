@@ -75,11 +75,15 @@ main {
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
     margin: 1rem 0;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(37, 117, 252, 0.3);
+    color: white;
 }
 
 .btn-secondary {
@@ -92,10 +96,13 @@ main {
     cursor: pointer;
     margin: 0 0.5rem;
     transition: background 0.3s;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .btn-secondary:hover {
     background: #5a6268;
+    color: white;
 }
 
 .options-panel {
@@ -241,17 +248,11 @@ main {
     line-height: 1.5;
 }
 
-.card-ctr {
-    background: #eef7ff;
-    color: #2575fc;
-    padding: 0.5rem;
-    border-radius: 5px;
-    font-weight: 600;
-    font-size: 0.9rem;
-}
-
-.single-card-section {
-    margin: 3rem 0;
+.card-cta {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 0.95rem;
+    margin-top: 10px;
 }
 
 /* Article section */
