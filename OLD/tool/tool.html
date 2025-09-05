@@ -1,0 +1,61 @@
+<div class="exif-scrubber-app">
+  <h2>EXIF Scrubber Tool</h2>
+  <input type="file" id="fileInput" multiple>
+  <div id="output"></div>
+  <!-- keep your existing markup here -->
+</div>
+<main class="container">
+        <section id="tool-section">
+            <div id="drop-area" class="drop-zone">
+                <div class="drop-content">
+                    <p>Drop images here</p>
+                    <p>or</p>
+                    <button id="browse-btn" class="btn-primary">Browse Files</button>
+                    <input type="file" id="file-input" accept="image/*" multiple hidden>
+                </div>
+            </div>
+
+            <div id="processing-options" class="options-panel hidden">
+                <div class="option-group">
+                    <label>
+                        <input type="checkbox" id="remove-metadata" checked>
+                        Remove all metadata (EXIF, GPS, etc.)
+                    </label>
+                </div>
+                
+                <div class="option-group">
+                    <label for="resize-preset">Resize for:</label>
+                    <select id="resize-preset">
+                        <option value="none">No resizing</option>
+                        <option value="instagram-post">Instagram Post (1080x1080)</option>
+                        <option value="instagram-story">Instagram Story (1080x1920)</option>
+                        <option value="facebook">Facebook Post (1200x630)</option>
+                        <option value="twitter">X/Twitter (1200x675)</option>
+                        <option value="tiktok">TikTok (1080x1920)</option>
+                        <option value="linkedin">LinkedIn (1200x627)</option>
+                        <option value="custom">Custom size</option>
+                    </select>
+                </div>
+                
+                <div id="custom-size" class="option-group hidden">
+                    <label>Width: <input type="number" id="custom-width" min="1" max="5000" value="1080"> px</label>
+                    <label>Height: <input type="number" id="custom-height" min="1" max="5000" value="1080"> px</label>
+                </div>
+                
+                <div class="option-group">
+                    <label for="quality">Quality: <span id="quality-value">85%</span></label>
+                    <input type="range" id="quality" min="10" max="100" value="85">
+                </div>
+                
+                <button id="process-btn" class="btn-primary">Process Images</button>
+            </div>
+
+            <div id="image-preview" class="preview-container hidden">
+                <h2>Processed Images</h2>
+                <div id="preview-list"></div>
+                <div class="actions">
+                    <button id="download-all" class="btn-secondary">Download All as ZIP</button>
+                    <button id="reset-btn" class="btn-secondary">Process More Images</button>
+                </div>
+            </div>
+        </section>
