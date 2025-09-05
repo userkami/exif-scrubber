@@ -1,68 +1,113 @@
-// Minimal client-side logic: read files, remove EXIF metadata by re-encoding images via canvas where possible.
-// Note: This is a lightweight approach. For HEIC, WEBP, or special cases we fallback to a binary-stripping approach where possible.
+// tool.js – EXIF Scrubber core
+// Requires: piexifjs (already included in tool.html via CDN)
 
+(function () {
+  const fileInput = document.getElementById("file-input");
+  const output = document.getElementById("output");
+  const clearBtn = document.getElementById("clear-btn");
+  const downloadAllBtn = document.getElementById("download-all-btn");
 
-(function(){
-const fileInput = document.getElementById('fileInput');
-const fileList = document.getElementById('fileList');
-const stripBtn = document.getElementById('stripBtn');
-const resizeBtn = document.getElementById('resizeBtn');
-const downloadAllBtn = document.getElementById('downloadAllBtn');
+  let cleanedFiles = [];
 
+  // Utility: create a download link for cleaned files
+  function createDownloadLink(name, blob) {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = name;
+    a.textContent = `Download ${name}`;
+    a.className =
+      "block px-4 py-2 my-2 bg-green-600 text-white rounded hover:bg-green-700";
+    return a;
+  }
 
-let files = [];
-let cleanedBlobs = [];
+  // Remove EXIF using piexifjs
+  function removeExifFromImage(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
 
+      reader.onload = function (e) {
+        try {
+          let dataUrl = e.target.result;
 
-fileInput.addEventListener('change', e => {
-files = Array.from(e.target.files || []);
-renderFileList();
-});
+          // Only process JPEGs with EXIF
+          if (file.type === "image/jpeg") {
+            let stripped = piexif.remove(dataUrl);
+            let byteString = atob(stripped.split(",")[1]);
+            let buffer = new Uint8Array(byteString.length);
 
+            for (let i = 0; i < byteString.length; i++) {
+              buffer[i] = byteString.charCodeAt(i);
+            }
 
-function renderFileList(){
-fileList.innerHTML = '';
-cleanedBlobs = [];
-files.forEach((f, idx) => {
-const el = document.createElement('div');
-el.className = 'file-item';
-el.innerHTML = `<div><strong>${escapeHtml(f.name)}</strong><br><small>${Math.round(f.size/1024)} KB — ${f.type || 'unknown'}</small></div><div><button data-idx="${idx}" class="single-strip">Strip</button></div>`;
-fileList.appendChild(el);
-});
-}
+            let blob = new Blob([buffer], { type: "image/jpeg" });
+            resolve(blob);
+          } else {
+            // Non-JPEG (PNG, WEBP, etc) → just return as-is
+            resolve(new Blob([e.target.result], { type: file.type }));
+          }
+        } catch (err) {
+          reject(err);
+        }
+      };
 
+      reader.onerror = () => reject(reader.error);
+      reader.readAsDataURL(file);
+    });
+  }
 
-fileList.addEventListener('click', async (e) => {
-if(e.target.matches('.single-strip')){
-const idx = Number(e.target.dataset.idx);
-const f = files[idx];
-e.target.disabled = true;
-const blob = await stripExif(f);
-cleanedBlobs[idx] = {name: f.name, blob};
-e.target.textContent = 'Done';
-}
-});
+  // Handle file selection
+  fileInput.addEventListener("change", async function () {
+    output.innerHTML = "";
+    cleanedFiles = [];
 
+    const files = Array.from(fileInput.files);
+    if (files.length === 0) return;
 
-stripBtn.addEventListener('click', async ()=>{
-if(!files.length) return alert('Select files first');
-stripBtn.disabled = true; stripBtn.textContent = 'Processing...';
-for(let i=0;i<files.length;i++){
-const f = files[i];
-const blob = await stripExif(f);
-cleanedBlobs[i] = {name: f.name, blob};
-}
-stripBtn.textContent = 'Strip EXIF'; stripBtn.disabled = false;
-alert('All files processed — you can download them individually or use ZIP download.');
-});
+    for (let file of files) {
+      try {
+        const cleanedBlob = await removeExifFromImage(file);
+        cleanedFiles.push({ name: file.name, blob: cleanedBlob });
 
+        const link = createDownloadLink(file.name, cleanedBlob);
+        output.appendChild(link);
+      } catch (err) {
+        const errorMsg = document.createElement("p");
+        errorMsg.textContent = `Failed to clean ${file.name}: ${err.message}`;
+        errorMsg.className = "text-red-600";
+        output.appendChild(errorMsg);
+      }
+    }
 
-downloadAllBtn.addEventListener('click', async ()=>{
-// create zip in memory using JSZip if available, else download individually
-if(cleanedBlobs.length === 0){
-alert('No processed files available. Use "Strip EXIF" first.');
-return;
-}
+    if (cleanedFiles.length > 1) {
+      downloadAllBtn.classList.remove("hidden");
+    }
+  });
 
+  // Clear output
+  clearBtn.addEventListener("click", function () {
+    output.innerHTML = "";
+    cleanedFiles = [];
+    fileInput.value = "";
+    downloadAllBtn.classList.add("hidden");
+  });
 
-function loadImageF
+  // Download all as ZIP
+  downloadAllBtn.addEventListener("click", async function () {
+    if (cleanedFiles.length === 0) return;
+
+    const zip = new JSZip();
+
+    cleanedFiles.forEach((f) => {
+      zip.file(f.name, f.blob);
+    });
+
+    const content = await zip.generateAsync({ type: "blob" });
+    const url = URL.createObjectURL(content);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "cleaned_images.zip";
+    a.click();
+  });
+})();
