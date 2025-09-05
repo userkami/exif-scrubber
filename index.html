@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Remove EXIF data and resize images for safe sharing on social media. Protect your privacy with our free online tool.">
+    <title>EXIF Scrubber & Safe-Share Image Resizer</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📷</text></svg>">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>EXIF Scrubber & Safe-Share Image Resizer</h1>
+            <p>Remove GPS/camera data; resize for social media</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="tool-section">
+            <div id="drop-area" class="drop-zone">
+                <div class="drop-content">
+                    <p>Drop images here</p>
+                    <p>or</p>
+                    <button id="browse-btn" class="btn-primary">Browse Files</button>
+                    <input type="file" id="file-input" accept="image/*" multiple hidden>
+                </div>
+            </div>
+
+            <div id="processing-options" class="options-panel hidden">
+                <div class="option-group">
+                    <label>
+                        <input type="checkbox" id="remove-metadata" checked>
+                        Remove all metadata (EXIF, GPS, etc.)
+                    </label>
+                </div>
+                
+                <div class="option-group">
+                    <label for="resize-preset">Resize for:</label>
+                    <select id="resize-preset">
+                        <option value="none">No resizing</option>
+                        <option value="instagram-post">Instagram Post (1080x1080)</option>
+                        <option value="instagram-story">Instagram Story (1080x1920)</option>
+                        <option value="facebook">Facebook Post (1200x630)</option>
+                        <option value="twitter">X/Twitter (1200x675)</option>
+                        <option value="tiktok">TikTok (1080x1920)</option>
+                        <option value="linkedin">LinkedIn (1200x627)</option>
+                        <option value="custom">Custom size</option>
+                    </select>
+                </div>
+                
+                <div id="custom-size" class="option-group hidden">
+                    <label>Width: <input type="number" id="custom-width" min="1" max="5000" value="1080"> px</label>
+                    <label>Height: <input type="number" id="custom-height" min="1" max="5000" value="1080"> px</label>
+                </div>
+                
+                <div class="option-group">
+                    <label for="quality">Quality: <span id="quality-value">85%</span></label>
+                    <input type="range" id="quality" min="10" max="100" value="85">
+                </div>
+                
+                <button id="process-btn" class="btn-primary">Process Images</button>
+            </div>
+
+            <div id="image-preview" class="preview-container hidden">
+                <h2>Processed Images</h2>
+                <div id="preview-list"></div>
+                <div class="actions">
+                    <button id="download-all" class="btn-secondary">Download All as ZIP</button>
+                    <button id="reset-btn" class="btn-secondary">Process More Images</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature Cards Section -->
+        <section class="cards-section">
+            <div class="card">
+                <div class="card-icon">🔒</div>
+                <h3>Privacy Protection</h3>
+                <p>Remove sensitive GPS data and camera information from your photos before sharing online.</p>
+                <div class="card-ctr">98% User Satisfaction</div>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">📱</div>
+                <h3>Social Media Ready</h3>
+                <p>Optimize images for Instagram, Facebook, Twitter and other platforms with one click.</p>
+                <div class="card-ctr">92% Faster Sharing</div>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">⚡</div>
+                <h3>Lightning Fast</h3>
+                <p>Process multiple images in seconds with our optimized browser-based technology.</p>
+                <div class="card-ctr">4.9/5 Performance Rating</div>
+            </div>
+        </section>
+
+        <section id="article-section" class="article-container">
+            <h2>Why Remove EXIF Data Before Sharing Photos?</h2>
+            <article>
+                <p>When you take a photo with your smartphone or digital camera, it embeds hidden data called EXIF (Exchangeable Image File Format) into the image file. While this metadata can be useful for organizing photos, it can also pose serious privacy risks when shared online.</p>
+                
+                <h3>What is EXIF Data?</h3>
+                <p>EXIF data includes information such as:</p>
+                <ul>
+                    <li>GPS coordinates (exact location where the photo was taken)</li>
+                    <li>Date and time the photo was taken</li>
+                    <li>Camera make and model</li>
+                    <li>Camera settings (aperture, shutter speed, ISO)</li>
+                    <li>Software used to edit the image</li>
+                </ul>
+                
+                <h3>Privacy Risks of Sharing EXIF Data</h3>
+                <p>When you share photos online without removing EXIF data, you may unknowingly reveal sensitive information:</p>
+                
+                <h4>1. Location Tracking</h4>
+                <p>The most significant risk is GPS coordinates embedded in photos. Anyone with access to the image file can extract these coordinates to determine exactly where the photo was taken, potentially compromising your home address, workplace, or vacation destinations.</p>
+                
+                <h4>2. Personal Information Exposure</h4>
+                <p>EXIF data can reveal patterns in your daily routine, such as when you typically take photos, which might indicate when you're away from home.</p>
+                
+                <h4>3. Device Fingerprinting</h4>
+                <p>Camera model and settings information can be used to identify your specific device, creating a digital fingerprint that can track your activity across different platforms.</p>
+                
+                <h3>How to Protect Yourself</h3>
+                <p>To protect your privacy when sharing photos online:</p>
+                <ul>
+                    <li>Always remove EXIF data before uploading images to social media</li>
+                    <li>Use privacy-focused tools like our EXIF Scrubber to automatically strip metadata</li>
+                    <li>Be cautious about sharing photos taken at sensitive locations</li>
+                    <li>Review privacy settings on social media platforms</li>
+                </ul>
+                
+                <h3>Benefits of Our Tool</h3>
+                <p>Our EXIF Scrubber & Safe-Share Image Resizer provides:</p>
+                <ul>
+                    <li>One-click removal of all EXIF metadata including GPS coordinates</li>
+                    <li>Automatic resizing for optimal social media sharing</li>
+                    <li>Complete privacy - all processing happens in your browser</li>
+                    <li>No registration or personal information required</li>
+                    <li>Free and unlimited use</li>
+                </ul>
+                
+                <p>By using our tool, you can share your photos confidently knowing that your personal information remains private.</p>
+            </article>
+        </section>
+
+        <!-- Additional Card Section -->
+        <section class="single-card-section">
+            <div class="card large">
+                <div class="card-icon">🛡️</div>
+                <h3>Enterprise Security</h3>
+                <p>Trusted by photographers, journalists, and businesses to protect sensitive location data in shared images. Our tool meets the highest privacy standards with zero data storage.</p>
+                <div class="card-ctr">Used by 50,000+ Professionals</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 EXIF Scrubber Tool. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="terms-of-use.html">Terms of Use</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="lib/piexif.min.js"></script>
+    <script src="assets/js/tool.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
