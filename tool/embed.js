@@ -3,7 +3,7 @@
   const container = document.getElementById('exif-tool');
   if(!container) return;
 
-  fetch('/tool/tool.html')
+  fetch('tool/tool.html')
     .then(r => r.text())
     .then(html => {
       container.innerHTML = html;
@@ -11,12 +11,12 @@
       // load css
       const link = document.createElement('link');
       link.rel = 'stylesheet';
-      link.href = '/tool/tool.css';
+      link.href = 'tool/tool.css';
       document.head.appendChild(link);
 
       // load js
       const script = document.createElement('script');
-      script.src = '/tool/tool.js';
+      script.src = 'tool/tool.js';
       document.body.appendChild(script);
     })
     .catch(err => {
